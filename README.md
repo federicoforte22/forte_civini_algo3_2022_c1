@@ -1,4 +1,4 @@
-### Preguntas Ejercicio 1
+#### Preguntas Ejercicio 1
 ## Sobre implementar funcionalidad
 Cuando implementamos inicialmente nuestro hábitat, superamos los tres de manera efectiva a la primera vez. Lo que hicimos fue crear los objetos necesarios para el test (como el hábitat, las avispas, etc.), definir colaboradores internos del hábitat necesarios (como cantidadHuevosAvispas) y definir los métodos necesarios para pasar los tests (como intentarReproducirse en las avispas).
 A medida que íbamos avanzando por test, fuimos modificando estos elementos para que cumplan tanto el nuevo test como el test anterior.
