@@ -141,24 +141,11 @@ Object subclass: #Numero
 	self subclassResponsibility 
 	! !
 
-!Numero methodsFor: 'arithmetic operations' stamp: 'FF 5/4/2022 11:58:28'!
+!Numero methodsFor: 'arithmetic operations' stamp: 'FF 5/5/2022 12:02:50'!
 + anAdder 
 	
 	self subclassResponsibility 
-	"
-	(type = #Entero and: [anAdder type = #Entero]) ifTrue:
-		[ ^self class with: value + anAdder integerValue ].
-	
-	(type = #Fraccion and: [anAdder type = #Fraccion]) ifTrue:
-		[ | newNumerator newDenominator |
-		
-		newNumerator := (numerator * anAdder denominator) + (denominator * anAdder numerator).
-		newDenominator := denominator * anAdder denominator.
-		
-		^ self class with: newNumerator over: newDenominator ].
-	
-	self error: 'Tipo de número no soportado'
-	"! !
+	! !
 
 !Numero methodsFor: 'arithmetic operations' stamp: 'DC 5/3/2022 19:50:36'!
 negated
