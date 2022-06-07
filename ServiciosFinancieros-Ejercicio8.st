@@ -16,7 +16,7 @@ test15ANewPortfolioBalanceIsZeroPesos
 	
 	! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FF 6/7/2022 18:51:50'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FF 6/7/2022 19:04:31'!
 test16APortfolioOnlyWithReceptiveAccountsBalanceIsTheSumOfAllReceptiveAccountsBalance
 
 	| portfolio receptiveAccount1 receptiveAccount2 receptiveAccount3 |
@@ -26,9 +26,9 @@ test16APortfolioOnlyWithReceptiveAccountsBalanceIsTheSumOfAllReceptiveAccountsBa
 	receptiveAccount2 := ReceptiveAccount new.
 	receptiveAccount3 := ReceptiveAccount new.
 	
-	portfolio addReceptiveAccount: receptiveAccount1.
-	portfolio addReceptiveAccount: receptiveAccount2.
-	portfolio addReceptiveAccount: receptiveAccount3.
+	portfolio addAccount: receptiveAccount1.
+	portfolio addAccount: receptiveAccount2.
+	portfolio addAccount: receptiveAccount3.
 		
 	Deposit register: 100 * peso on: 	receptiveAccount1.
 	Deposit register: 50 * peso on: 	receptiveAccount2.
@@ -39,7 +39,7 @@ test16APortfolioOnlyWithReceptiveAccountsBalanceIsTheSumOfAllReceptiveAccountsBa
 	
 	! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FF 6/7/2022 18:52:30'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FF 6/7/2022 19:04:31'!
 test17ATransactionInAReceptiveAccountIsRegisteredByThePortfolio
 
 	| portfolio receptiveAccount1 deposit1 |
@@ -47,14 +47,14 @@ test17ATransactionInAReceptiveAccountIsRegisteredByThePortfolio
 	portfolio := Portfolio new.
 	receptiveAccount1 := ReceptiveAccount new.
 	
-	portfolio addReceptiveAccount: receptiveAccount1.
+	portfolio addAccount: receptiveAccount1.
 		
 	deposit1 := Deposit register: 100 * peso on: 	receptiveAccount1.
 	
 	self assert: (portfolio hasRegistered: deposit1).
 	! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FF 6/7/2022 18:53:33'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FF 6/7/2022 19:04:31'!
 test18APortfolioCanListAllOfItsTransactions
 
 	| portfolio receptiveAccount1 receptiveAccount2 receptiveAccount3  deposit1 deposit2 deposit3 allTransactions |
@@ -64,9 +64,9 @@ test18APortfolioCanListAllOfItsTransactions
 	receptiveAccount2 := ReceptiveAccount new.
 	receptiveAccount3 := ReceptiveAccount new.
 	
-	portfolio addReceptiveAccount: receptiveAccount1.
-	portfolio addReceptiveAccount: receptiveAccount2.
-	portfolio addReceptiveAccount: receptiveAccount3.
+	portfolio addAccount: receptiveAccount1.
+	portfolio addAccount: receptiveAccount2.
+	portfolio addAccount: receptiveAccount3.
 		
 	deposit1 := Deposit register: 100 * peso on: 	receptiveAccount1.
 	deposit2 := Deposit register: 50 * peso on: 	receptiveAccount2.
@@ -78,7 +78,7 @@ test18APortfolioCanListAllOfItsTransactions
 	self assert: allTransactions includes: deposit2 .
 	self assert: allTransactions includes: deposit3 .! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FF 6/7/2022 18:54:26'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FF 6/7/2022 19:04:31'!
 test19APortfolioWithReceptiveAccountsAndOtherPorfoliosBalanceIsTheSumOfAllReceptiveAccountsBalance
 
 	| portfolio1 portfolio2 receptiveAccount1 receptiveAccount2 receptiveAccount3 |
@@ -89,10 +89,10 @@ test19APortfolioWithReceptiveAccountsAndOtherPorfoliosBalanceIsTheSumOfAllRecept
 	receptiveAccount2 := ReceptiveAccount new.
 	receptiveAccount3 := ReceptiveAccount new.
 	
-	portfolio1 addReceptiveAccount: receptiveAccount1.
-	portfolio2 addReceptiveAccount: receptiveAccount2.
-	portfolio2 addReceptiveAccount: receptiveAccount3.
-	portfolio1 addPortfolio: portfolio2.
+	portfolio1 addAccount: receptiveAccount1.
+	portfolio2 addAccount: receptiveAccount2.
+	portfolio2 addAccount: receptiveAccount3.
+	portfolio1 addAccount: portfolio2.
 		
 	Deposit register: 100 * peso on: 	receptiveAccount1.
 	Deposit register: 50 * peso on: 	receptiveAccount2.
@@ -100,7 +100,7 @@ test19APortfolioWithReceptiveAccountsAndOtherPorfoliosBalanceIsTheSumOfAllRecept
 	
 	self assert: 200 * peso equals: portfolio1 balance.! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FF 6/7/2022 18:55:22'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FF 6/7/2022 19:04:31'!
 test20ATransactionInAReceptiveAccountThatIsInAPortfolioIsRegisteredByThePortfolio
 
 	| portfolio1 portfolio2 receptiveAccount2 deposit2 |
@@ -110,15 +110,15 @@ test20ATransactionInAReceptiveAccountThatIsInAPortfolioIsRegisteredByThePortfoli
 	portfolio2 := Portfolio new.
 	receptiveAccount2 := ReceptiveAccount new.
 	
-	portfolio2 addReceptiveAccount: receptiveAccount2.
-	portfolio1 addPortfolio: portfolio2.
+	portfolio2 addAccount: receptiveAccount2.
+	portfolio1 addAccount: portfolio2.
 		
 	deposit2 := Deposit register: 50 * peso on: 	receptiveAccount2.
 	
 	
 	self assert: (portfolio1 hasRegistered: deposit2).! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FF 6/7/2022 18:56:18'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'FF 6/7/2022 19:04:31'!
 test21APortfolioWithReceptiveAccountsAndOtherPorfoliosCanListAllOfItsTransactions
 
 	| portfolio1 portfolio2 receptiveAccount1 receptiveAccount2 receptiveAccount3  deposit1 deposit2 deposit3 allTransactions |
@@ -130,10 +130,10 @@ test21APortfolioWithReceptiveAccountsAndOtherPorfoliosCanListAllOfItsTransaction
 	receptiveAccount2 := ReceptiveAccount new.
 	receptiveAccount3 := ReceptiveAccount new.
 	
-	portfolio1 addReceptiveAccount: receptiveAccount1.
-	portfolio2 addReceptiveAccount: receptiveAccount2.
-	portfolio2 addReceptiveAccount: receptiveAccount3.
-	portfolio1 addPortfolio: portfolio2.
+	portfolio1 addAccount: receptiveAccount1.
+	portfolio2 addAccount: receptiveAccount2.
+	portfolio2 addAccount: receptiveAccount3.
+	portfolio1 addAccount: portfolio2.
 		
 	deposit1 := Deposit register: 100 * peso on: 	receptiveAccount1.
 	deposit2 := Deposit register: 50 * peso on: 	receptiveAccount2.
@@ -533,15 +533,10 @@ initialize
 	accounts := OrderedCollection new! !
 
 
-!Portfolio methodsFor: 'main protocol' stamp: 'FF 6/7/2022 18:42:52'!
-addPortfolio: aPortfolio 
+!Portfolio methodsFor: 'main protocol' stamp: 'FF 6/7/2022 19:04:40'!
+addAccount: anAccount
 
-	accounts add: aPortfolio ! !
-
-!Portfolio methodsFor: 'main protocol' stamp: 'FF 6/6/2022 20:59:42'!
-addReceptiveAccount: aReceptiveAccount
-
-	accounts add: aReceptiveAccount ! !
+	accounts add: anAccount ! !
 
 !Portfolio methodsFor: 'main protocol' stamp: 'FF 6/7/2022 18:43:53'!
 balance
